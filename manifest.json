@@ -1,0 +1,24 @@
+{
+  "name": "QazaqLatin Converter",
+  "description": "Converts Kazakh Cyrillic -> Latin script dynamically on websites.",
+  "permissions": ["storage", "activeTab"],
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/ext-logo.png",
+    "default_title": "Qazaq Latin Converter"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "scripts/mapping.js",
+        "scripts/detect.js",
+        "scripts/walker.js",
+        "scripts/content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Qazaq Latin Converter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="title">
+      Qazaq (Kazakh)<br>
+      Cyrillic ➔ Latin<br>
+      Converter
+    </h1>
+    <div class="logo">
+      <img src="icons/ext-logo.png" alt="Icon" width="50" height="50">
+    </div>
+  </header>
+
+  <div class="toggle-row">
+    <span>Auto conversion</span>
+    <label class="switch">
+      <input type="checkbox" id="autoToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="section">
+    <label>Type or paste a text (Cyrillic):</label>
+    <div class="textarea-wrapper">
+      <textarea id="inputText" placeholder="Мәтінді теріңіз немесе қойыңыз..."></textarea>
+      <button id="clearBtn" class="circle-btn">✕</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <label>Latin Script:</label>
+    <div class="textarea-wrapper">
+      <textarea id="outputText" readonly placeholder="Mätındı köşırıp alıñız..."></textarea>
+      <button id="copyBtn" class="circle-btn">📋</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Based on the <a href="https://primeminister.kz/ru/news/a-mamin-provel-zasedanie-nackomissii-po-perevodu-alfavita-kazahskogo-yazyka-na-latinskuyu-grafiku-280497" style="color: yellow;" target="_blank">latest</a> 
+    Kazakh Latin alphabet (2021 revision).
+  </footer>
+
+  <script src="scripts/mapping.js"></script>
+  <script src="scripts/popup.js"></script>
+</body>
+</html>
