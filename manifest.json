@@ -1,5 +1,5 @@
 {
-  "name": "QazaqLatin Converter",
+  "name": "Qazaq (Kazakh) Latin Converter",
   "description": "Converts Kazakh Cyrillic -> Latin script dynamically on websites.",
   "permissions": ["storage", "activeTab"],
   "version": "1.0",
