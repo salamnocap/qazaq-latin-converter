@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/salamnocap/qazaq-latin-converter"><img src="icons/ext-logo.png" alt="Qazaq (Kazakh) Latin Converter" width=200></a>
+  <a href="https://chromewebstore.google.com/detail/dhmfcfdfebpofmgpoimflhbjfimfdibo?utm_source=item-share-cb"><img src="icons/ext-logo.png" alt="Qazaq (Kazakh) Latin Converter" width=200></a>
 </p>
 
 # Qazaq (Kazakh) Latin Converter
