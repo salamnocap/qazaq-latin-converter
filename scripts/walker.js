@@ -4,13 +4,13 @@ const SKIP_TAGS = new Set([
 const originalTextMap = new WeakMap();
 
 
-function handleTextNode(node, toLatin){
+function handleTextNode(node, toLatin, mappingVersion){
   const val = node.nodeValue;
   if (!val || !val.trim()) return;
 
   if (toLatin) {
     if (!originalTextMap.has(node)) originalTextMap.set(node, val);
-    if (detectKazakh(val)) node.nodeValue = convertText(val);
+    if (detectKazakh(val)) node.nodeValue = convertText(val, mappingVersion);
   } else {
     if (originalTextMap.has(node)) {
       node.nodeValue = originalTextMap.get(node);
@@ -19,7 +19,7 @@ function handleTextNode(node, toLatin){
   }
 }
 
-function walk(node, toLatin=true){
+function walk(node, toLatin=true, mappingVersion){
   if (!node) return;
 
   if (node.nodeType === 1) {
@@ -32,9 +32,9 @@ function walk(node, toLatin=true){
   while (child) {
     const next = child.nextSibling;
     if (child.nodeType === 3) {
-      handleTextNode(child, toLatin);
+      handleTextNode(child, toLatin, mappingVersion);
     } else {
-      walk(child, toLatin);
+      walk(child, toLatin, mappingVersion);
     }
     child = next;
   }

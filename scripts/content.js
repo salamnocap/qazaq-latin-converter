@@ -1,19 +1,20 @@
 let enabled = false;
+let version = '2021';
 let observer = null;
 
 function applyEnabled(on){
   enabled = !!on;
   if (enabled) {
-    walk(document.body, true);
+    walk(document.body, true, version);
 
     if (!observer) {
       observer = new MutationObserver((mutList) => {
         for (const m of mutList) {
           m.addedNodes && m.addedNodes.forEach(n => {
             if (n.nodeType === 3) {
-              handleTextNode(n, true);
+              handleTextNode(n, true, version);
             } else if (n.nodeType === 1) {
-              walk(n, true);
+              walk(n, true, version);
             }
           });
         }
@@ -26,12 +27,19 @@ function applyEnabled(on){
   }
 }
 
-chrome.storage.sync.get("enabled", ({enabled: st}) => {
+chrome.storage.sync.get(["enabled", "version"], ({enabled: st, version: ver}) => {
+  version = ver || "2021";
   applyEnabled(!!st);
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === "sync" && changes.enabled) {
-    applyEnabled(changes.enabled.newValue);
+  if (area === "sync") {
+    if (changes.enabled) {
+      applyEnabled(changes.enabled.newValue);
+    }
+    if (changes.version) {
+      version = changes.version.newValue || "2021";
+      if (enabled) walk(document.body, true, version);
+    }
   }
 });

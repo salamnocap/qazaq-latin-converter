@@ -27,7 +27,15 @@
   </div>
 
   <div class="section">
-    <label>Type or paste a text (Cyrillic):</label>
+    <label for="versionSelect">Select alphabet version:</label>
+    <select id="versionSelect">
+      <option value="2021" selected>2021 (official)</option>
+      <option value="custom">Custom</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <label for="inputText">Type or paste a text (Cyrillic):</label>
     <div class="textarea-wrapper">
       <textarea id="inputText" placeholder="Мәтінді теріңіз немесе қойыңыз..."></textarea>
       <button id="clearBtn" class="circle-btn">✕</button>
@@ -35,7 +43,7 @@
   </div>
 
   <div class="section">
-    <label>Latin Script:</label>
+    <label for="outputText">Latin Script:</label>
     <div class="textarea-wrapper">
       <textarea id="outputText" readonly placeholder="Mätındı köşırıp alıñız..."></textarea>
       <button id="copyBtn" class="circle-btn">📋</button>

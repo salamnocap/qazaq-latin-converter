@@ -12,6 +12,11 @@ const kazakhMapping = {
   'Ү': 'Ü', 'ү': 'ü',
 } // Qazaq Latin alphabet (April 2021)
 
+const kazakhMappingCustom = {
+  ...kazakhMapping,
+  'І': 'İ', 'і': 'i',
+} // Custom
+
 const sharedMapping = {
   'А': 'A', 'а': 'a',
   'Б': 'B', 'б': 'b',
@@ -39,6 +44,12 @@ const sharedMapping = {
   'Ы': 'Y', 'ы': 'y',
 }; // Qazaq Latin alphabet (April 2021)
 
+const sharedMappingCustom = {
+  ...sharedMapping,
+  'И': 'Y', 'и': 'y',
+  'Й': 'Y', 'й': 'y',
+  'Ы': 'I', 'ы': 'ı',
+} // Custom
 
 // Additional rules for Russian letters
 const russianRules = [
@@ -66,17 +77,33 @@ const russianRules = [
   { regex: /ъ/g, repl: "" },
 ];
 
-const mapping = { ...kazakhMapping, ...sharedMapping };
+const russianRulesCustom = [
+  { regex: /Ю/g, repl: "Yu" },
+  { regex: /ю/g, repl: "yu" },
+  { regex: /Ия/g, repl: "Ya" },
+  { regex: /ия/g, repl: "ya" },
+  { regex: /Я/g, repl: "ya" },
+  { regex: /я/g, repl: "ya" },
+  ...russianRules.filter(
+    rule => !['/Ю/g','/ю/g','/Ия/g','/ия/g','/Я/g','/я/g'].includes(rule.regex.toString())
+  ),
+]
 
-function convertText(text) {
-  russianRules.forEach(rule => {
+const mapping2021 = { ...kazakhMapping, ...sharedMapping };
+const customMapping = { ...kazakhMappingCustom, ...sharedMappingCustom}
+
+function convertText(text, mappingVersion) {
+  console.log(mappingVersion)
+  const mapping = (mappingVersion === '2021') ? mapping2021 : customMapping;
+  const rules = (mappingVersion === '2021') ? russianRules : russianRulesCustom;
+
+  rules.forEach(rule => {
       text = text.replace(rule.regex, rule.repl);
   }); // apply russian rules
 
   text = text.replace(/./g, char =>
       mapping[char] || char
   ); // replace characters
-
 
   return text;
 }
